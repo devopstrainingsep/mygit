@@ -1,4 +1,5 @@
 #Nginx installation
+#nginx server  codes
 sudo apt update
 sudo apt install nginx
 cd /var/www
