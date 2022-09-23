@@ -1,0 +1,98 @@
+#Nginx installation
+sudo apt update
+sudo apt install nginx
+cd /var/www
+if [ ! -d "tutorial" ]; then
+    sudo mkdir tutorial
+fi    
+cd tutorial
+ 
+sudo dd of=index.html << EOF
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>Hello, Nginx!</title>
+</head>
+<body>
+   <h1>Hello, Nginx!</h1>
+   <p>We have just configured our Nginx web server on Ubuntu Server!</p>
+</body>
+</html>
+EOF
+ 
+cd /etc/nginx/sites-enabled
+sudo dd of=tutorial << EOF
+server {
+      listen 81;
+      listen [::]:81;
+ 
+      server_name example.ubuntu.com;
+ 
+      root /var/www/tutorial;
+      index index.html;
+ 
+      location / {
+              try_files $uri $uri/ =404;
+      }
+}
+EOF
+sudo service nginx restart
+
+#Apache installation
+sudo apt update
+sudo apt install apache2
+cd /var/www
+if [ ! -d "tutorial" ]; then
+    sudo mkdir tutorial
+fi    
+cd tutorial
+ 
+sudo dd of=index.html << EOF
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>Hello, Apache!</title>
+</head>
+<body>
+   <h1>Hello, Apache!</h1>
+   <p>We have just configured our Apache web server on Ubuntu Server!</p>
+</body>
+</html>
+EOF
+
+cd /etc/apache2/sites-available
+sudo dd of=000-default.conf << EOF
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/apache/
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
+EOF
+sudo service apache2 restart
+
+#Tomcat installations
+sudo apt update
+sudo apt-get install tomcat9 tomcat9-docs tomcat9-admin -y
+sudo cp -r /usr/share/tomcat9-admin/* /var/lib/tomcat9/webapps/ -v
+cd /var/lib/tomcat9/conf/
+
+sudo dd of=tomcat-users.xml << EOF
+<role rolename="manager-script"/>
+<user username="tomcat" password="password" roles="manager-script"/>
+EOF
+sudo systemctl restart tomcat9
+
+#Jenkins Installation
+sudo apt install openjdk-11-jre-headless
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key |sudo gpg --dearmor -o /usr/share/keyrings/jenkins.gpg
+sudo sh -c 'echo deb [signed-by=/usr/share/keyrings/jenkins.gpg] http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt update
+sudo apt install jenkins
+sudo systemctl status jenkins
+
+
