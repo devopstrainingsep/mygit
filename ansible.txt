@@ -1,0 +1,28 @@
+sudo apt update
+sudo apt install ansible
+ansible  --version
+
+adhoc concept:
+
+ansible localhost -m apt -a "name=git state=present" -b
+ansible localhost -m apt -a "name=git state=absent" -b
+
+
+
+playbook concept
+ansible-playbook git.yml
+sudo vi git.yml
+---
+#installing git 
+ - name : installing git on localhost
+   hosts : localhost
+   tasks:
+     - name : installing git
+       apt : name=git state=present
+       become : yes 
+
+ansible-playbook git.yml --syntax-check
+
+
+
+Pacman contains the compressed files as a package format and maintains a text-based package database

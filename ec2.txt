@@ -1,0 +1,14 @@
+#cli ec2 instances creation
+ 
+aws ec2 run-instances 
+--image-id ami-097a2df4ac947655f  
+--count 1 
+--instance-type t2.micro 
+--key-name ubuntu
+--region us-east-2
+--security-group-ids sg-0bdea7b9dfd55879e
+--vpc vpc-057f096dc76c5d0ff 
+--subnet-id subnet-06e034a52e3223696
+
+
+aws sts assume-role --role-arn arn:aws:iam::AccountID:role/RoleName --role-session-name RoleName --region us-east-2 --endpoint-url https://sts.us-east-2.amazonaws.com

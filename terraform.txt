@@ -1,0 +1,22 @@
+sudo apt install terraform (or)
+sudo snap install terrraform --classic
+terraform --version
+
+sudo vi sample.tf
+provider "aws"{
+region = "us-east-2"
+access_key = "AKIARQFBBNNZSWTROSES"
+secret_key = "yqMkXn9ao06PSrRdkkgJ2QR5Mf2gvgXBH9BWGjDU"
+}
+
+resource "aws_instance" "tf-ec2"{
+ami = "ami-097a2df4ac947655f"
+instance_type = "t2.micro"
+}
+
+terraform init
+terraform plan
+terraform validate
+terraform apply
+terraform show
+terraform destroy

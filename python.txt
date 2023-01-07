@@ -1,0 +1,60 @@
+add two numbers:
+
+a=int(input())
+b=int(input())
+c=a+b
+print("sum of {0} and {1} is {2}" .format(a,b,c))
+
+factorial:
+
+num=4
+fact=1
+for i in range(1, num+1):
+    fact=fact* i
+print(fact)  
+
+
+#si=pnr/100
+
+def si(p,n,r):
+    SI=(p*n*r)/100
+    print(SI)
+si(8,8,8)
+
+#ci
+def ci(p,n,r):
+    a=a=p*(1+(r/100))**n
+    c=a-p
+    print(c)
+ci(1200,2,5.4)
+
+armstrong
+
+n=153
+s=0
+t=n
+while t> 0:
+    r=t%10
+    s+=r**3
+    t//=10
+if s==n:
+    print("armstrong")
+else:
+    print("not a")
+
+#area of circle:
+def area(r):
+    pi=3.12
+    result=pi*r*r
+    print(result)
+area(4)
+
+#sum of numbers 
+
+sum=0
+for i in range(1,10):
+    sum=sum+i
+    print(sum)
+  
+
+
