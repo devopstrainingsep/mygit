@@ -1,4 +1,4 @@
-#Nginx installation
+#Nginx installation commands
 #nginx server  codes
 #nginx code for installing in ubuntu 
 sudo apt update
