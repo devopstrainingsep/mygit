@@ -14,6 +14,7 @@ ami = "ami-097a2df4ac947655f"
 instance_type = "t2.micro"
 }
 
+#sample test
 terraform init
 terraform plan
 terraform validate
